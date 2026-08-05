@@ -7,8 +7,8 @@ rm(list = ls(all = TRUE))  # clear workspace
 library(dplyr)
 
 ## Set paths
-your_path <- "your_path/Github"  # replace with your path to Github folder 
-output_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_out/outputs")
+your_path <- "your_path/Githubnetwork_stability_heatwaves_ENA_M_out/"  # replace with your path to Github folder 
+output_path <- file.path(your_path,"outputs")
 setwd(output_path)
 
 

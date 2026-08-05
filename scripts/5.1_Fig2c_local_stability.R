@@ -9,8 +9,8 @@ library(tidyverse)
 
 
 ## Set paths
-your_path <- "your_path/Github"  # replace with your path to Github folder 
-output_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_out/outputs")
+your_path <- "your_path/Github/network_stability_heatwaves_ENA_M_OUT/"  # replace with your path to Github folder 
+output_path <- file.path(your_path,"outputs")
 
 
 #######################################

@@ -4,9 +4,8 @@
 rm(list = ls())
 
 ## Set paths 
-your_path <- "your_path/Github"  # replace with your path to Github folder 
-source_file_path <-  file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_out/dataframes")
-output_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_out/outputs")
+your_path <- "your_path/Github/network_stability_heatwaves_ENA_M_OUT/" # replace "your_path" with your path to the Github folder 
+output_path <- file.path(your_path,"outputs")
 setwd(output_path)
 
 

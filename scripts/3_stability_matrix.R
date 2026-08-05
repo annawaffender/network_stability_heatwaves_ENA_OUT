@@ -10,9 +10,9 @@ library(dplyr)
 library(crayon)
 
 ## Set paths
-your_path <- "your_path/Github"  # replace with your path to Github folder 
-correct_path <-  file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/dataframes")
-output_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/outputs")
+your_path <- "your_path/Github/network_stability_heatwaves_ENA_M_OUT/"  # replace with your path to Github folder 
+correct_path <-  file.path(your_path,"dataframes")
+output_path <- file.path(your_path,"outputs")
 setwd(correct_path)
 
 
@@ -326,42 +326,6 @@ interaction_tank_matrices
 ## WITH CHANGING MORTALITIES ##
 ##
 ##############################
-
-## Calculate the Eigenvektors of each matrix 
-eigenvalues_list <- lapply(interaction_tank_matrices, function(mat) eigen(mat)$values) # neg. real parts of eigenvalues indicate stability
-eigenvalues_list
-
-## Plot max eigenvalues for each tank 
-re_max <- unlist(lapply(eigenvalues_list,function(x)max(abs(Re(x))))) # extract max. Eigenvalue for each tank 
-
-df_re_max <- data.frame(tank = names(re_max), max_eigenvalue = as.numeric(re_max))
-df_re_max$treat <- c("0HW", "0HW", "3HW", "1HW", "1HW", "0HW", "0HW", "3HW", "3HW", "1HW", "1HW")
-
-
-HW_col = c("#1F5673", "#E3B505", "#D95D39")
-
-ggplot(df_re_max, aes(x = treat, y = max_eigenvalue, fill = treat)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_point(position = position_jitter(width = 0.1), size = 2) +
-  labs(x = "Treatment", y = "Max eigenvalue") +
-  scale_fill_manual(values = HW_col) +  
-  theme_light(base_size = 24) +
-  theme(
-    panel.grid = element_blank(),
-    legend.position = "none",
-    axis.title.x = element_text(size = 28),   
-    axis.title.y = element_text(size = 28),
-    axis.text.x  = element_text(size = 25),   
-    axis.text.y  = element_text(size = 25))
-
-
-## STATS
-lm_fit <- lm(max_eigenvalue ~ treat, data = df_re_max)
-summary(lm_fit)
-
-
-
-##
 
 
 multipliers <- seq(from = 0.015, to = 0.001, by = -0.0001)

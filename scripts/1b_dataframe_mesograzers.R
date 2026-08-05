@@ -16,9 +16,9 @@ library(multcomp)
 
 
 ## Set paths 
-your_path <- "your_path/Github" # replace with your path to Github folder  
-correct_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/dataframes")
-output_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/outputs")
+your_path <- "your_path/Github/network_stability_heatwaves_ENA_M_OUT/" # replace "your_path" with your path to the Github folder 
+correct_path <- file.path(your_path,"dataframes")
+output_path <- file.path(your_path,"outputs")
 
 
 ############################################

@@ -12,11 +12,9 @@ library(stringr)
 library(reshape2)
 
 ## Set paths 
-your_path <- "your_path/Github"  # replace with your path to Github folder 
-source_file_path <-  file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/dataframes")
-flow_matrix_save <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/outputs/flow_matrices")
-output_path <- file.path(your_path,"/Github/network_stability_heatwaves_ENA_M_OUT/outputs")
-setwd(output_path)
+your_path <- "your_path/Github/network_stability_heatwaves_ENA_M_OUT/" # replace "your_path" with your path to the Github folder 
+correct_path <- file.path(your_path,"dataframes")
+output_path <- file.path(your_path,"outputs")
 
 
 ############################################
@@ -34,7 +32,7 @@ mesograzers_df <- data.frame(read.csv(file = "df_mesograzers_tank.csv"))
 infauna_df <- data.frame(read.csv(file = "df_infauna_tank.csv"))
 consumers_df <- rbind(mesograzers_df, infauna_df)
 
-macrophytes_exports <- read.csv(file.path(source_file_path, "macrophytes_exports.csv")) # export file for the three primary producers (mortalities)
+macrophytes_exports <- read.csv(file.path(correct_path, "macrophytes_exports.csv")) # export file for the three primary producers (mortalities)
 
 
 
@@ -122,7 +120,7 @@ for(i in 1:nrow(compartments_df)){
 ###################################
 
 ## build a binary matrix from the edgelist (including feeding preferences)
-file_path_source_EL <- paste0(source_file_path, "/", "1_source_data.xlsx")
+file_path_source_EL <- paste0(correct_path, "/", "1_source_data.xlsx")
 source_data_EL <- as.data.frame(read_xlsx(file_path_source_EL, sheet = "edgelist"))
 
 binary <- matrix(rep(0,length(compartment_names)^2), nrow = length(compartment_names))
@@ -138,7 +136,7 @@ flows_list <- as.list(rep(NA,length(tank)))
 names(flows_list) <- tank
 
 ## import feeding preferences of mesograzers
-file_path_source_SIA <- paste0(source_file_path, "/", "1_source_data.xlsx")
+file_path_source_SIA <- paste0(correct_path, "/", "1_source_data.xlsx")
 source_data_SIA <- as.data.frame(read_xlsx(file_path_source_SIA, sheet = "SIA"))
 
 ## start adding the carbon flows to mesograzers (MG) as their feeding preferences were determined with staple isotope analysis (SIA)
